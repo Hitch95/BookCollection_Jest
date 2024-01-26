@@ -1,7 +1,13 @@
+import { getAveragePrice } from "./BookPriceService";
+
 type Book = {
     id: number;
     titleName: string;
     author: string;
+};
+
+interface IsAvailable extends Book {
+    available: boolean;
 };
 
 export class BookCollection {
