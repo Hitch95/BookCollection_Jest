@@ -1,12 +1,25 @@
 import { BookCollection } from "../app/BookCollection";
 
 describe("BookCollection", () => {
+
+    it ("should get all books", () => {
+        const collection = new BookCollection();
+        const addedBook = {
+            id: 1,
+            titleName: "The Daily Stoic",
+            author: "Ryan Holiday"
+        }
+        collection.addBook(addedBook);
+        const allBooks = collection.getAllBooks();
+        expect(allBooks).toContainEqual(addedBook); 
+    });
+
     it("should add a book", () => {
         const collection = new BookCollection();
         const newBook = {
             id: 1,
-            titleName: "Book 1",
-            author: "Author 1"
+            titleName: "The Daily Stoic",
+            author: "Ryan Holiday"
         };
         collection.addBook(newBook);
         const allBooks = collection.getAllBooks();
@@ -17,8 +30,8 @@ describe("BookCollection", () => {
         const collection = new BookCollection();
         const addedBook = {
             id: 1,
-            titleName: "Book 1",
-            author: "Author 1"
+            titleName: "The Daily Stoic",
+            author: "Ryan Holiday"
         };
         collection.addBook(addedBook);
         collection.removeBook(addedBook.id);
@@ -26,27 +39,40 @@ describe("BookCollection", () => {
         expect(allBooks).toEqual([]);
     });
 
-    it ("should find a book by name", () => {
+    it ("should find a book by book's name", () => {
         const collection = new BookCollection();
         const addedBook = {
             id: 1,
-            titleName: "Book 1",
-            author: "Author 1"
+            titleName: "The Daily Stoic",
+            author: "Ryan Holiday"
         };
         collection.addBook(addedBook);
-        const findBook = collection.findBookByName("Book 1");
+        const findBook = collection.findBookByName("The Daily Stoic");
         expect(findBook).toContainEqual(addedBook);
     });
 
-    it ("should find a book by author name", () => {
+    it ("should find a book by author's name", () => {
         const collection = new BookCollection();
         const addedBook = {
             id: 1,
-            titleName: "Book 1",
-            author: "Author 1"
+            titleName: "The Daily Stoic",
+            author: "Ryan Holiday"
         }
         collection.addBook(addedBook);
-        const findBook = collection.findBookByAuthor("Author 1");
+        const findBook = collection.findBookByAuthor("Ryan Holiday");
         expect(findBook).toContainEqual(addedBook);
     });
+
+    it ("should find a book by book's id", () => {
+        const collection = new BookCollection();
+        const addedBook = {
+            id: 1,
+            titleName: "The Daily Stoic",
+            author: "Ryan Holiday"
+        }
+        collection.addBook(addedBook);
+        const findBook = collection.findBookById(1);
+        expect(findBook).toEqual(addedBook);
+    });
+
 })

@@ -17,7 +17,7 @@ export class BookCollection {
     removeBook(id: number): void {
         this.books = this.books.filter((book) => book.id !== id)
     };
-
+    
     findBookById(id: number) {
         return this.books.find((book) => book.id === id);
     };
